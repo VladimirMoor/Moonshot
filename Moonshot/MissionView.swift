@@ -38,6 +38,7 @@ import SwiftUI
             GeometryReader { geometry in
                 ScrollView(.vertical) {
                     VStack {
+                        
                         Image(self.mission.image)
                             .resizable()
                             .scaledToFit()

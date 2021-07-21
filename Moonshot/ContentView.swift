@@ -18,13 +18,19 @@ struct ContentView: View {
        
         NavigationView {
             List(missions) { mission in
+                
                 NavigationLink(destination: MissionView(mission: mission, astronauts: astronauts)) {
+                    
+                    GeometryReader { geo in
                     Image(mission.image)
                         .resizable()
-                        .scaledToFit()
+                        .scaleEffect(1 + geo.frame(in: .global).maxY / 1000)
                         .frame(width: 44, height: 44)
                         .accessibility(removeTraits: .isImage)
-                    
+                    }
+                    .frame(width: 60)
+                    .padding(.top, 20)
+                        
                     VStack(alignment: .leading) {
                         Text(mission.displayName)
                         .font(.headline)
@@ -37,6 +43,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                
                 }
                 .accessibility(addTraits: .isButton)
             }
